@@ -1,6 +1,5 @@
 import React from 'react'
 import '../../index.css';
-import Img1 from '../Images/p1.jpg';
 import data from '../Data/data';
 
 function Home() {
@@ -8,23 +7,23 @@ function Home() {
         <div className="grid-container">
             <header className="row">
                 <div>
-                    <a className="brand" href="index.html">karty-e-cart</a>
+                    <a className="brand" href="/">karty-e-cart</a>
                 </div>
                 <div>
-                    <a href="cart.html">Cart</a>
-                    <a href="signin.html">Sign In</a>
+                    <a href="/cart">Cart</a>
+                    <a href="/signin">Sign In</a>
                 </div>
             </header>
             <main>
                 <div>
                     <div className="row center">
                         {
-                            data.products.map((product) => {
+                            data.products.map((product) => (
 
                         <div className="card">
-                            <a href="product.html">
+                            <a href={`/product/${product._id}`}>
                                 {/* <!-- image size: 680px by 830px --> */}
-                                <img className="medium" src={Img1} alt="product" />
+                                <img className="medium" src={product.image} alt="product" />
                             </a>
                             <div className="card-body">
                                 <a href="product.html">
@@ -37,10 +36,10 @@ function Home() {
                                     <span> <i className="fa fa-star"></i> </span>
                                     <span> <i className="fa fa-star"></i> </span>
                                 </div>
-                                <div className="price">$120</div>
+                                <div className="price">${product.price}</div>
                             </div>
                         </div>
-                            })
+                            ))
                         }
                     </div>
                 </div>
