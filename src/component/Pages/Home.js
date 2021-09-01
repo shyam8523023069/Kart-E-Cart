@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../index.css';
 import data from '../Data/data';
+import Items from './Items';
 
 function Home() {
     return (
@@ -19,26 +20,8 @@ function Home() {
                     <div className="row center">
                         {
                             data.products.map((product) => (
-
-                        <div className="card">
-                            <a href={`/product/${product._id}`}>
-                                {/* <!-- image size: 680px by 830px --> */}
-                                <img className="medium" src={product.image} alt="product" />
-                            </a>
-                            <div className="card-body">
-                                <a href="product.html">
-                                    <h2>{product.name}</h2>
-                                </a>
-                                <div className="rating">
-                                    <span> <i className="fa fa-star"></i> </span>
-                                    <span> <i className="fa fa-star"></i> </span>
-                                    <span> <i className="fa fa-star"></i> </span>
-                                    <span> <i className="fa fa-star"></i> </span>
-                                    <span> <i className="fa fa-star"></i> </span>
-                                </div>
-                                <div className="price">${product.price}</div>
-                            </div>
-                        </div>
+                                <Items key = {product._id} product = {product} />
+                       
                             ))
                         }
                     </div>
