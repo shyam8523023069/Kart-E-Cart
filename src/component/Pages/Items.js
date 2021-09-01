@@ -6,7 +6,6 @@ function Items(props) {
     return (
         <div key={product._id} className="card">
         <a href={`/product/${product._id}`}>
-            {/* <!-- image size: 680px by 830px --> */}
             <img className="medium" src={product.image} alt="product" />
         </a>
         <div className="card-body">
@@ -15,7 +14,7 @@ function Items(props) {
             </a>
                 <Rating rating = {product.rating}
                         numReviews ={product.numReviews} />
-            <div className="price">${product.price}</div>
+            <div className="price">&#8377; {product.price}</div>
         </div>
     </div>
     )
