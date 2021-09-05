@@ -1,16 +1,36 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import data from "../../Data/data";
+// import data from "../../Data/data";
 import Rating from '../Rating';
 import '../../PagesCSS/ProductScreen.css';
+import LoadingBox from '../LoadingBox';
+import MessageBox from '../MessageBox';
+import {useSelector, useDispatch} from 'react-redux';
+import {detailsProduct} from "../../Redux/ProductAction";
+import {useEffect} from 'react';
 
 function ProductScreen(props) {
-    const product = data.products.find((x) => x._id === props.match.params.id );
-    if(!product){
-        return <div>Product Not Found</div>;
-    }
+    const dispatch = useDispatch();
+    const productId = props.match.params.id;
+    const productDetails = useSelector((state)=> state.productDetails );
+    const {loading, error, product}= productDetails;
+    // const product = data.products.find((x) => x._id === props.match.params.id );
+    // if(!product){
+    //     return <div>Product Not Found</div>;
+    // }
+useEffect(()=>{
+    dispatch(detailsProduct(productId));
+},[dispatch, productId]);
+
     return (
         <div>
+            {
+            loading ? (<LoadingBox></LoadingBox>)
+                    :error ? (
+                        <MessageBox variant = "danger">{error}</MessageBox>
+                    ) :(
+                        <div>
+
             <Link to="/">HomePage</Link>
             <div className="row top">
               <div className="col-2" >
@@ -57,6 +77,8 @@ function ProductScreen(props) {
                 </div>
               </div>
             </div>        
+                        </div>
+                    )}
         </div>
     )
 }
