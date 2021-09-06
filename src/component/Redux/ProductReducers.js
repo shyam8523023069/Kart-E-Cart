@@ -3,7 +3,8 @@ const { PRODUCT_LIST_FAIL,
     PRODUCT_LIST_SUCCESS,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
-    PRODUCT_DETAILS_FAIL } = require( "./ProductConst");
+    PRODUCT_DETAILS_FAIL,
+    CART_ADD_ITEM } = require( "./ProductConst");
 
 export const productListReducer =( 
     state = {loading : true, products: [] },
@@ -11,9 +12,9 @@ export const productListReducer =(
      ) => {
     switch(action.type){
         case PRODUCT_LIST_REQUEST:
-            return {loading: true};
+            return {loading: true} ;
         case PRODUCT_LIST_SUCCESS:
-            return { loading: false, products: action.payload };
+            return { loading: false, products: action.payload,   };
         case PRODUCT_LIST_FAIL:
             return {loading:false, error: action.payload};
         default:
@@ -36,4 +37,23 @@ export const productDetailsReducer = (
     
 
     }
-}
+};
+
+export const cartReducer = (state = {cartItems:[]}, action) => {
+    switch (action.type){   
+        case CART_ADD_ITEM:
+            const item = action.payload;
+            const existItem = state.cartItems.find((x) => x.product === item.product);
+            if(existItem){
+                return{
+                    ...state,
+                    cartItems: state.cartItems.map((x)=>
+                    x.product === existItem.product ? item:x),
+                };
+            }else{
+                return{...state, cartItems:[...state.cartItems, item]};
+            }
+            default:
+                return state;
+    }
+};

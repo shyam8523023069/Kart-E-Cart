@@ -15,7 +15,7 @@ const data = {
         name:'book2',
         category:'pages2',
         image:'../Images/p3.jpg',
-        price:1200,
+        price:12,
         brand:'brand2',
         rating:5,
         numReviews: 154,
