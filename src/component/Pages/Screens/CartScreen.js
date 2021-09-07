@@ -5,10 +5,10 @@ import { addToCart } from '../../Redux/ProductAction';
 
 function CartScreen(props) {
 
-    const productId = props.match.params.id;
+    const productId =props.match.params.id;
     const qty = props.location.search 
-                 ? Number(props.location.search.split('=')[0])
-                : 0;
+                 ? Number(props.location.search.split('=')[1])
+                : 1;
     const dispatch = useDispatch();
     useEffect(()=>{
         if(productId){
