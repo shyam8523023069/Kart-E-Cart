@@ -1,4 +1,20 @@
+// import bcrypt from 'bcryptjs';\
+const bcrypt = require('bcryptjs');
+
 const data = {
+   
+        users:[{
+                name: 'shyam',
+                email: 'shyam@kart.com',
+                password: bcrypt.hashSync('1234', 8),
+                isAdmin: true,
+            },{
+                name: 'mani',
+                email: 'mani@kart.com',
+                password: bcrypt.hashSync('1234', 8),
+                isAdmin: false,
+            }],
+    
     products:[{
         _id:'1',
         name:'book',
@@ -102,4 +118,5 @@ const data = {
 
     ]};
 
-    export default data;
+    // export default data;
+    module.exports = data;

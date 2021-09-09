@@ -6,7 +6,8 @@ import {
     PRODUCT_DETAILS_FAIL,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
-    CART_ADD_ITEM
+    CART_ADD_ITEM,
+    CART_REMOVE_ITEM
 } from "./ProductConst"
 
 export const listProducts = () => async (dispatch) => {
@@ -42,7 +43,7 @@ export const detailsProduct = (productId) => async (dispatch) => {
 
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
     const { data } = await Axios.get(`/api/products/${productId}`);
-    console.log(data + 'data from cart')
+    console.log(JSON.stringify(data) + 'data from cart')
     dispatch({
         type: CART_ADD_ITEM,
         payload: {
@@ -55,4 +56,10 @@ export const addToCart = (productId, qty) => async (dispatch, getState) => {
         },
     });
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+    console.log(localStorage.getItem('cartItems'))
 };
+
+export const removeFromCart = (productId) => (dispatch, getState) => {
+    dispatch({type: CART_REMOVE_ITEM, payload: productId});
+    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}

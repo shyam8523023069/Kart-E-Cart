@@ -18,11 +18,12 @@ function Home() {
                 </div>
                 <div>
                     <Link to="/cart">Cart
-                    {cartItems.length > 0 && (
-                        <span className="badge">
-                            {cartItems.length}
-                        </span>
-                    )}
+                    { cartItems.length > 0 && <span className="badge">
+                                {cartItems.length}
+                            </span>
+                       
+                    
+                    }
                     </Link>
                     <Link to="/signin">Sign In</Link>
                 </div>
