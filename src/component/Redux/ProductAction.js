@@ -43,7 +43,11 @@ export const detailsProduct = (productId) => async (dispatch) => {
 
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
     const { data } = await Axios.get(`/api/products/${productId}`);
+<<<<<<< HEAD
     console.log(JSON.stringify(data) + 'data from cart')
+=======
+
+>>>>>>> 9d5328c275302a2d6a099f1bffb8e33e2dabda1c
     dispatch({
         type: CART_ADD_ITEM,
         payload: {
@@ -55,6 +59,7 @@ export const addToCart = (productId, qty) => async (dispatch, getState) => {
             qty,
         },
     });
+<<<<<<< HEAD
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
     console.log(localStorage.getItem('cartItems'))
 };
@@ -63,3 +68,10 @@ export const removeFromCart = (productId) => (dispatch, getState) => {
     dispatch({type: CART_REMOVE_ITEM, payload: productId});
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
+=======
+    
+    
+        localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+        // console.log( localStorage.getItem('cartItems'))
+    }
+>>>>>>> 9d5328c275302a2d6a099f1bffb8e33e2dabda1c
