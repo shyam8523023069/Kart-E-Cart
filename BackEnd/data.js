@@ -16,7 +16,7 @@ const data = {
             }],
     
     products:[{
-        _id:'1',
+        // _id:'1',
         name:'book',
         category:'pages',
         image:'/Images/p1.jpg',
@@ -27,7 +27,7 @@ const data = {
         description:'high quality product',
         countInStock : 2,
     },{
-        _id:'2',
+        // _id:'2',
         name:'book2',
         category:'pages2',
         image:'../Images/p3.jpg',
@@ -38,7 +38,7 @@ const data = {
         description:'high quality product',
         countInStock : 21,
     },{
-        _id:'3',
+        // _id:'3',
         name:'book3',
         category:'pages3',
         image:'../Images/p2.jpg',
@@ -49,7 +49,7 @@ const data = {
         description:'high quality product',
         countInStock : 12,
     },{
-        _id:'4',
+        // _id:'4',
         name:'book4',
         category:'pages4',
         image:'../Images/p3.jpg',
@@ -60,7 +60,7 @@ const data = {
         description:'high quality product',
         countInStock : 5,
     },{
-        _id:'5',
+        // _id:'5',
         name:'book5',
         category:'pages5',
         image:'../Images/p2.jpg',
@@ -71,7 +71,7 @@ const data = {
         description:'high quality product',
         countInStock : 12,
     },{
-        _id:'6',
+        // _id:'6',
         name:'book6',
         category:'pages6',
         image:'../Images/p1.jpg',
@@ -82,7 +82,7 @@ const data = {
         description:'high quality product',
         countInStock : 9,
     },{
-        _id:'7',
+        // _id:'7',
         name:'book7',
         category:'pages7',
         image:'../Images/p1.jpg',
@@ -93,7 +93,7 @@ const data = {
         description:'high quality product',
         countInStock : 7,
     },{
-        _id:'8',
+        // _id:'8',
         name:'book8',
         category:'pages8',
         image:'../Images/p2.jpg',
@@ -104,7 +104,7 @@ const data = {
         description:'high quality product',
         countInStock : 0,
     },{
-        _id:'9',
+        // _id:'9',
         name:'book9',
         category:'pages9',
         image:'../Images/p3.jpg',

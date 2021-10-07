@@ -7,7 +7,7 @@ const { PRODUCT_LIST_FAIL,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
     CART_ADD_ITEM, 
-    CART_REMOVE_ITEM} = require( "./ProductConst");
+    CART_REMOVE_ITEM} = require( "./Const");
 
 export const productListReducer =( 
     state = {loading : true, products: [] },
@@ -47,7 +47,6 @@ export const cartReducer = (state = {cartItems:[]}, action) => {
     switch (action.type){   
         case CART_ADD_ITEM:
             const item = action.payload;
-<<<<<<< HEAD
             // localStorage.removeItem("cartItems");
             // console.log(JSON.stringify(item) + 'data from reducer cart' )
 
@@ -59,12 +58,10 @@ export const cartReducer = (state = {cartItems:[]}, action) => {
             // console.log(state.cartItems.product, item.product)
             
 
-            const existItem = state.cartItems.find( x => x.product === item.product);
-=======
-            console.log(JSON.stringify(item) + ' items present data......')
+            // const existItem = state.cartItems.find( x => x.product === item.product);
+            // console.log(JSON.stringify(item) + ' items present data......')
             const existItem = state.cartItems.find((x) => x.product === item.product);
             console.log(JSON.stringify(state.cartItems)+ '===========cartitems.... data....')
->>>>>>> 9d5328c275302a2d6a099f1bffb8e33e2dabda1c
             if(existItem){
                 return{
                     ...state,

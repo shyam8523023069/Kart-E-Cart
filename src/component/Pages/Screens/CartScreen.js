@@ -8,19 +8,12 @@ import './Screens.css';
 
 function CartScreen(props) {
 
-<<<<<<< HEAD
-    const productId = props.match.params.id;
-    const qty = props.location.search
-        ? Number(props.location.search.split('=')[1])
-        : 1;
-    const cart = useSelector((state) => state.cart);
-    const { cartItems } = cart;
-=======
     const productId =props.match.params.id;
     const qty = props.location.search 
                  ? Number(props.location.search.split('=')[1])
                 : 1;
->>>>>>> 9d5328c275302a2d6a099f1bffb8e33e2dabda1c
+     const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
     const dispatch = useDispatch();
     useEffect(() => {
         if (productId) {
