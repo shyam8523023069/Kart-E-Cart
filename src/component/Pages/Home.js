@@ -10,10 +10,12 @@ import { signout } from '../Redux/UserAction';
 
 function Home() {
     const cart = useSelector((state)=>state.cart);
+   
     const{cartItems}= cart;
-
+    
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
+    // console.log(JSON.stringify(userInfo)+"data after home page........")
     const dispatch = useDispatch();
     const signoutHandler = () => {
       dispatch(signout());

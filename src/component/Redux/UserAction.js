@@ -7,12 +7,14 @@ import {
 } from './Const';
 
 export const signin = (email, password) => async (dispatch) => {
-  dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
+  dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password }  });
   try {
     const { data } = await Axios.post('/api/users', { email, password });
-    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
-    // localStorage.setItem('userInfo', JSON.stringify(data));
-    console.log(JSON.stringify(data) +'data of signinnnnnnnnnnnnnnnnnnnnnn============')
+   
+    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data && data.token ? data 
+      :'' });
+      localStorage.setItem('userInfo', JSON.stringify(data));
+    // console.log(JSON.stringify(data) +'data of signinnnnnnnnnnnnnnnnnnnnnn============')
   } catch (error) {
     dispatch({
       type: USER_SIGNIN_FAIL,
