@@ -51,7 +51,7 @@ userRouter.post('/register', (req, res, next) => {
                      })
                  })
                  .catch(error =>{
-                     res.json({
+                     res.status(404).json({
                          message:'Error Boss..'
                      })
                  })
@@ -86,7 +86,7 @@ userRouter.post('/', expressAsyncHandler(async(req, res, next) => {
                         })
                     }
                     else {
-                        res.status(200).json({
+                        res.status(404).json({
                             message: 'Password does not Matched..!'
                         })
                     }
@@ -94,7 +94,7 @@ userRouter.post('/', expressAsyncHandler(async(req, res, next) => {
                     
                 
             } else {
-                res.status(200).json({
+                res.status(404).json({
                     message: 'NO user found..!'
                 })
             }

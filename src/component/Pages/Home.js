@@ -15,7 +15,7 @@ function Home() {
     
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
-    // console.log(JSON.stringify(userInfo)+"data after home page........")
+    // console.log(JSON.stringify(userInfo.data.name)+"data after home page........")
     const dispatch = useDispatch();
     const signoutHandler = () => {
       dispatch(signout());
@@ -40,7 +40,7 @@ function Home() {
                     {userInfo ? (
               <div className="dropdown">
                 <Link to="#">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
+                  {userInfo.data.name} <i className="fa fa-caret-down"></i>{' '}
                 </Link>
                 <ul className="dropdown-content">
                   <li>
