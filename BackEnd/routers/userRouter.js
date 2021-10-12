@@ -30,7 +30,7 @@ userRouter.get('/details',  (req, res, next) => {
 userRouter.post('/register', (req, res, next) => {
     User.findOne({email: req.body.email}, (err, login) => {
         if(login){
-            res.send({message: "User already registerd"})
+            res.status(404).send({message: "User already registerd..!"})
         } else {
             bcrypt.hash(req.body.password, 10, function (err,hashedPass){
                  if(err){
@@ -47,12 +47,12 @@ userRouter.post('/register', (req, res, next) => {
                  login.save()
                  .then(user =>{
                      res.json({
-                         message: 'Register Details added sucess...'
+                         message: 'Register Details added sucess..!'
                      })
                  })
                  .catch(error =>{
                      res.status(404).json({
-                         message:'Error Boss..'
+                         message:'Error Boss..!'
                      })
                  })
              })

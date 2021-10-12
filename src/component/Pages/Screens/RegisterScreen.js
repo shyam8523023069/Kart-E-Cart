@@ -1,27 +1,37 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Register } from '../../Redux/UserAction';
 import LoadingBox from '../LoadingBox';
 import MessageBox from '../MessageBox';
+import {Link} from 'react-router-dom'
 
 function RegisterScreen() {
-    const [Name, setName] = useState('')
-    const [Email, setEmail] = useState('')
-    const [Password, setPassword] = useState('')
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [ConfirmPass, setConfirmPass]= useState('')
+
+    const userRegister = useSelector((state) => state.userRegister);
+    const { userInfo, loading, error } = userRegister;
     const dispatch=useDispatch();
+    
     const submitHandler=(e)=>{
         e.preventDefault();
-        dispatch(register(Name, Email, Password, ConfirmPass))
+        if(password === ConfirmPass){
+            dispatch(Register(name, email, password ))
+        }else{
+            alert("Password don't match...")
+        }
     }
 
     return (
         <div>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler} >
                 <div>
                     <h1>New User Registeration</h1>
                     <div>
-                        {/* {loading && <LoadingBox />} */}
-                        {/* {error && <MessageBox variant="danger">{error}</MessageBox>  } */}
+                        {loading && <LoadingBox />}
+                        {error && <MessageBox variant="danger">{error}</MessageBox>  }
                         <div>
                             <label>Name</label>
                             <input 
@@ -55,12 +65,16 @@ function RegisterScreen() {
                             <label>Confirm Password</label>
                             <input
                              type="confirmPass"
+                             id="password"
                              placeholder="Confirm Password"
                              onChange={(e)=>setConfirmPass(e.target.value)}
                              ></input>
                         </div>
                         <div>
                             <button className="primary" type="submit" >Register</button>
+                            <Link to="/signin">
+                            <button className="primary">SignIn</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
