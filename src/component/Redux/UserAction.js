@@ -14,8 +14,11 @@ export const Register = (name, email, password)=> async (dispatch)=>{
   try{
     const data = await Axios.post('/api/users/register', {name, email, password});
     dispatch({type: USER_REGISTER_SUCCESS, payload:data});
+    if(data && data.status === 200){
+      console.log("data at axios",data)
+      window.location.href = "/signin"
+    }
     localStorage.setItem('userDetails', JSON.stringify(data))
-
   }catch(error){
     dispatch({type: USER_REGISTER_FAIL, payload:
       error.response && error.response.data.message

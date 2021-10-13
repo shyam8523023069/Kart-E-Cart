@@ -12,13 +12,15 @@ function RegisterScreen() {
     const [ConfirmPass, setConfirmPass]= useState('')
 
     const userRegister = useSelector((state) => state.userRegister);
-    const { userInfo, loading, error } = userRegister;
+    const { userDetails, loading, error } = userRegister;
+    // console.log(JSON.stringify(userDetails)+'==============data comming from register')
     const dispatch=useDispatch();
     
     const submitHandler=(e)=>{
         e.preventDefault();
         if(password === ConfirmPass){
             dispatch(Register(name, email, password ))
+            // call signin
         }else{
             alert("Password don't match...")
         }
@@ -31,6 +33,7 @@ function RegisterScreen() {
                     <h1>New User Registeration</h1>
                     <div>
                         {loading && <LoadingBox />}
+                        {/* {userDetails && <MessageBox variant="success">{userDetails.data.message}</MessageBox>  } */}
                         {error && <MessageBox variant="danger">{error}</MessageBox>  }
                         <div>
                             <label>Name</label>
@@ -64,17 +67,13 @@ function RegisterScreen() {
                         <div>
                             <label>Confirm Password</label>
                             <input
-                             type="confirmPass"
-                             id="password"
+                             type="password"
                              placeholder="Confirm Password"
                              onChange={(e)=>setConfirmPass(e.target.value)}
                              ></input>
                         </div>
                         <div>
                             <button className="primary" type="submit" >Register</button>
-                            <Link to="/signin">
-                            <button className="primary">SignIn</button>
-                            </Link>
                         </div>
                     </div>
                 </div>

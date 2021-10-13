@@ -16,7 +16,7 @@ import { userSigninReducer,
 
 const initialState = {
     userRegister:{
-        userDetails:localStorage.getItem('userDetails')
+        userDetails : localStorage.getItem('userDetails')
         ? JSON.parse(localStorage.getItem('userDetails'))
         : null,
     },
