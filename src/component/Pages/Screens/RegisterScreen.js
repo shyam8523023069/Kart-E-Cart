@@ -1,21 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Register } from '../../Redux/UserAction';
 import LoadingBox from '../LoadingBox';
 import MessageBox from '../MessageBox';
-import {Link} from 'react-router-dom'
 
-function RegisterScreen() {
+function RegisterScreen(props) {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [ConfirmPass, setConfirmPass]= useState('')
 
+    const redirect1 = props.location.search
+    ? props.location.search.split('=')[1]
+    : '/signin';
+    console.log(JSON.stringify(props)+'props===========reg')
+
     const userRegister = useSelector((state) => state.userRegister);
-    const { userInfo, loading, error } = userRegister;
+    const { userDetails, loading, error } = userRegister;
+    console.log(JSON.stringify(userDetails)+'===========data reg screen');
     const dispatch=useDispatch();
     
-    const submitHandler=(e)=>{
+    const SubmitHandler=(e)=>{
         e.preventDefault();
         if(password === ConfirmPass){
             dispatch(Register(name, email, password ))
@@ -23,15 +28,21 @@ function RegisterScreen() {
             alert("Password don't match...")
         }
     }
+    useEffect(() => {
+        if (userDetails) {
+          props.history.push(redirect1);
+        }
+      }, [props.history, redirect1, userDetails]);
+    
 
     return (
         <div>
-            <form onSubmit={submitHandler} >
+            <form onSubmit={SubmitHandler} >
                 <div>
                     <h1>New User Registeration</h1>
-                    <div>
+                    <div >
                         {loading && <LoadingBox />}
-                        {error && <MessageBox variant="danger">{error}</MessageBox>  }
+                        {error && <MessageBox style={{color: "red"}}>{error}</MessageBox>  }
                         <div>
                             <label>Name</label>
                             <input 
@@ -64,17 +75,17 @@ function RegisterScreen() {
                         <div>
                             <label>Confirm Password</label>
                             <input
-                             type="confirmPass"
-                             id="password"
+                             type="password"
+                             id="confirmPass"
                              placeholder="Confirm Password"
                              onChange={(e)=>setConfirmPass(e.target.value)}
                              ></input>
                         </div>
                         <div>
-                            <button className="primary" type="submit" >Register</button>
-                            <Link to="/signin">
-                            <button className="primary">SignIn</button>
-                            </Link>
+                        
+                         <button className="primary" type="submit" >Register</button>
+                        
+                           
                         </div>
                     </div>
                 </div>

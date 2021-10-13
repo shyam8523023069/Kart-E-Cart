@@ -13,7 +13,7 @@ import {
       case USER_REGISTER_REQUEST :
         return {loading:true};
       case USER_REGISTER_SUCCESS :
-        return {loading : false, userdetails: action.payload};
+        return {loading : false, userDetails: action.payload};
       case USER_REGISTER_FAIL :
         return {loading: false, error: action.payload}; 
       default :
