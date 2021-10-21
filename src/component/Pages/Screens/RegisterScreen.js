@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Register } from '../../Redux/UserAction';
 import LoadingBox from '../LoadingBox';
@@ -10,14 +10,8 @@ function RegisterScreen(props) {
     const [password, setPassword] = useState('')
     const [ConfirmPass, setConfirmPass]= useState('')
 
-    const redirect1 = props.location.search
-    ? props.location.search.split('=')[1]
-    : '/signin';
-    console.log(JSON.stringify(props)+'props===========reg')
-
     const userRegister = useSelector((state) => state.userRegister);
-    const { userDetails, loading, error } = userRegister;
-    console.log(JSON.stringify(userDetails)+'===========data reg screen');
+    const { loading, error } = userRegister;
     const dispatch=useDispatch();
     
     const SubmitHandler=(e)=>{
@@ -28,24 +22,19 @@ function RegisterScreen(props) {
             alert("Password don't match...")
         }
     }
-    useEffect(() => {
-        if (userDetails) {
-          props.history.push(redirect1);
-        }
-      }, [props.history, redirect1, userDetails]);
-    
 
     return (
         <div>
-            <form onSubmit={SubmitHandler} >
+            <form className="form"  onSubmit={SubmitHandler} >
                 <div>
                     <h1>New User Registeration</h1>
                     <div >
                         {loading && <LoadingBox />}
-                        {error && <MessageBox style={{color: "red"}}>{error}</MessageBox>  }
-                        <div>
-                            <label>Name</label>
+                        {error && <MessageBox>{error}</MessageBox>  }
+                        <div >
+                            <label htmlFor="name">Name</label>
                             <input 
+                            style={{width:300}}
                              type="name"
                              id="name"
                              placeholder="Enter Name"
@@ -54,8 +43,9 @@ function RegisterScreen(props) {
                              ></input>
                         </div>
                         <div>
-                            <lable htmlFor="email">Email Address</lable>
+                            <label  htmlFor="email">Email Address</label>
                             <input 
+                            style={{width:300}}
                              type="email"
                              id="email"
                              placeholder="Enter Email"
@@ -64,8 +54,9 @@ function RegisterScreen(props) {
                              ></input>
                         </div>
                         <div>
-                            <label>Password</label>
+                            <label htmlFor="password">Password</label>
                             <input 
+                            style={{width:300}}
                              type="password"
                              id="password"
                              placeholder="Enter Password"
@@ -73,8 +64,9 @@ function RegisterScreen(props) {
                              ></input>
                         </div>
                         <div>
-                            <label>Confirm Password</label>
+                            <label htmlFor="confirmPassword">Confirm Password</label>
                             <input
+                            style={{width:300}}
                              type="password"
                              id="confirmPass"
                              placeholder="Confirm Password"
@@ -82,10 +74,8 @@ function RegisterScreen(props) {
                              ></input>
                         </div>
                         <div>
-                        
-                         <button className="primary" type="submit" >Register</button>
-                        
-                           
+                             <label style={{paddingTop:10}} />
+                             <button  style={{width:300}} className="primary" type="submit">Register</button>
                         </div>
                     </div>
                 </div>
